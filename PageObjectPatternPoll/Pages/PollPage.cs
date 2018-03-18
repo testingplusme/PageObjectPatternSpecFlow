@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BoDi;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 
@@ -36,8 +37,10 @@ namespace PageObjectPatternPoll.Pages
         public int AmountOfVotes => int.Parse(VotesCounter.FindElement(By.TagName("span")).Text);
 
         private IWebDriver driver;
-        public PollPage(IWebDriver driver)
+
+        public PollPage(IObjectContainer container)
         {
+            driver = container.Resolve<IWebDriver>();
             PageFactory.InitElements(driver,this);
         }
     }

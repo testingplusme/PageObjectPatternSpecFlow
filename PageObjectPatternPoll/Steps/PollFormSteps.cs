@@ -40,7 +40,7 @@ namespace PageObjectPatternPoll.Steps
             Assert.True(pollPage.PollBox.Displayed,"pollPage.PollBox.Displayed is false");
         }
 
-        [When(@"I add vote")]
+        [When(@"I add ""tak"" vote")]
         public void WhenIAddVote()
         {
             waitHelper.WaitForClickable(pollPage.ViewResults);
