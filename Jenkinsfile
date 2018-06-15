@@ -10,8 +10,8 @@ pipeline {
 
             stage 'Build'
             bat 'nuget restore PageObjectPatternPoll.sln'
-            bat"\"${tool 'MSBuild'}\" PageObjectPatternPoll.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-
+            def msbuild = tool name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation'
+            bat "${msbuild} SimpleWindowsProject.sln"
           }
         }
 
