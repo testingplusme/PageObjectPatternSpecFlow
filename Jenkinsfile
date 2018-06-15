@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('Build code') {
       steps {
+        sh 'nuget'
         script {
           node {
             stage 'Checkout'
