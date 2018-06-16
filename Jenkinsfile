@@ -4,22 +4,15 @@ pipeline {
     stage('Build code') {
       steps {
         script {
-          pipeline {
-            agent {
-              label 'win-slave-node'
-            }
-            stages {
-              stage('Build') {
-                steps {
-                  script {
-                    checkout scm
-                    bat 'nuget restore PageObjectPatternPoll.sln'
-                    def msbuild = tool name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation'
-                    bat "${msbuild} PageObjectPatternPollt.sln"
-                  }
-                }
-              }
-            }
+          node {
+            stage 'Checkout'
+            checkout scm
+
+            stage 'Build'
+            bat 'nuget restore PageObjectPattern.sln'
+            bat "\"${tool 'MSBuild 15.0 [32bit]'}\" PageObjectPattern.sln /p:Configuration=Release /p:Platform=\"Any CPU\" /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+
+
           }
         }
 
