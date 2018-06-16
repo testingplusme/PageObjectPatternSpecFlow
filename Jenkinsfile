@@ -12,6 +12,7 @@ pipeline {
               stage('Build') {
                 steps {
                   script {
+                    checkout scm
                     bat 'nuget restore PageObjectPatternPoll.sln'
                     def msbuild = tool name: 'MSBuild', type: 'hudson.plugins.msbuild.MsBuildInstallation'
                     bat "${msbuild} PageObjectPatternPollt.sln"
