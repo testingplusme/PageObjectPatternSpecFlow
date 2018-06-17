@@ -45,18 +45,11 @@ namespace PageObjectPatternPoll.Steps
         [When(@"I add ""tak"" vote")]
         public void WhenIAddVote()
         {
-            var actions = new Actions(Driver);
-            waitHelper.WaitForClickable(pollPage.ViewResults);
-            actions.MoveToElement(pollPage.ViewResults).Click().Build().Perform();
-            waitHelper.WaitForClickable(pollPage.VotesCounter);
+            seleniumHelper.MoveToElementAndClick(pollPage.ViewResults);
             scenarioContext.Set<int>(pollPage.AmountOfVotes,"AMOUNT-OF-POLLS");
-            actions.MoveToElement(pollPage.ViewResults).Click().Build().Perform();
-            waitHelper.WaitForClickable(pollPage.ReturnToPoll);
-            actions.MoveToElement(pollPage.ReturnToPoll).Build().Perform();
-            waitHelper.WaitForClickable(pollPage.PollAnswears.First(x => x.Text=="Tak"));
-            actions.MoveToElement(pollPage.PollAnswears.First(x => x.Text == "Tak")).Click().Build().Perform();
-            waitHelper.WaitForClickable(pollPage.VoteButton);
-            actions.MoveToElement(pollPage.VoteButton).Click().Build().Perform();
+            seleniumHelper.MoveToElementAndClick(pollPage.ReturnToPoll);
+            seleniumHelper.MoveToElementAndClick(pollPage.PollAnswears.First(x => x.Text == "Tak"));
+            seleniumHelper.MoveToElementAndClick(pollPage.VoteButton);
         }
 
         [Then(@"Check amount of votes")]
