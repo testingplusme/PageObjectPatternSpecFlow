@@ -47,7 +47,7 @@ namespace PageObjectPatternPoll.Steps
         public void WhenIAddVote()
         {
             seleniumHelper.MoveToElementAndClick(pollPage.ViewResults);
-            waitHelper.Wait().Until(ExpectedConditions.ElementToBeClickable(pollPage.VotesCounter));
+            waitHelper.WaitForClickable(pollPage.VotesCounter);
             scenarioContext.Set<int>(pollPage.AmountOfVotes,"AMOUNT-OF-POLLS");
             seleniumHelper.MoveToElementAndClick(pollPage.ReturnToPoll);
             seleniumHelper.MoveToElementAndClick(pollPage.PollAnswears.First(x => x.Text == "Tak"));

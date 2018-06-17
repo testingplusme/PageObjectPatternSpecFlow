@@ -7,18 +7,9 @@ namespace PageObjectPatternPoll.Pages
 {
     public class PollPage
     {
-        [FindsBy(How = How.CssSelector,Using= ".pds-question-top")]
-        public IWebElement PollTitle { get; set; }
-
-        [FindsBy(How = How.CssSelector,Using= ".entry-title")]
-        public IWebElement Title { get; set; }
-
         [FindsBy(How = How.CssSelector,Using= ".pds-vote-button")]
         public IWebElement VoteButton { get; set; }
-
-        [FindsBy(How = How.CssSelector,Using= ".pds-box-top .pds-feedback-group")]
-        public IWebElement FeedbackResults { get; set; }
-
+      
         [FindsBy(How = How.CssSelector,Using= ".pds-total-votes")]
         public IWebElement VotesCounter { get; set; }
 
