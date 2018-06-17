@@ -36,6 +36,9 @@ namespace PageObjectPatternPoll.Pages
 
         public int AmountOfVotes => int.Parse(VotesCounter.FindElement(By.TagName("span")).Text);
 
+        [FindsBy(How=How.CssSelector,Using = "#eu-cookie-law input")]
+        public IWebElement CookiePolicy { get; set; }
+
         private IWebDriver driver;
 
         public PollPage(IObjectContainer container)
