@@ -40,6 +40,7 @@ namespace PageObjectPatternPoll.Steps
         {
             waitHelper.WaitForClickable(pollPage.PollBox);  
             Assert.True(pollPage.PollBox.Displayed,"pollPage.PollBox.Displayed is false");
+            waitHelper.WaitForClickable(pollPage.CookiePolicy);
             pollPage.CookiePolicy.Click();
         }
 

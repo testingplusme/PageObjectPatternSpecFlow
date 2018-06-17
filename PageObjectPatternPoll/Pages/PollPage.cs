@@ -10,7 +10,7 @@ namespace PageObjectPatternPoll.Pages
         [FindsBy(How = How.CssSelector,Using= ".pds-vote-button")]
         public IWebElement VoteButton { get; set; }
       
-        [FindsBy(How = How.CssSelector,Using= ".pds-total-votes")]
+        [FindsBy(How = How.CssSelector,Using= ".pds-total-votes span")]
         public IWebElement VotesCounter { get; set; }
 
         [FindsBy(How = How.CssSelector,Using= ".pds-return-poll")]
@@ -25,7 +25,7 @@ namespace PageObjectPatternPoll.Pages
         [FindsBy(How = How.CssSelector,Using = ".pds-box")]
         public IWebElement PollBox { get; set; }
 
-        public int AmountOfVotes => int.Parse(VotesCounter.FindElement(By.TagName("span")).Text);
+        public int AmountOfVotes => int.Parse(VotesCounter.Text);
 
         [FindsBy(How=How.CssSelector,Using = "#eu-cookie-law input")]
         public IWebElement CookiePolicy { get; set; }
