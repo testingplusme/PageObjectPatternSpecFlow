@@ -2,6 +2,7 @@
 using BoDi;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using PageObjectPatternPoll.Helpers;
 using PageObjectPatternPoll.Pages;
 using TechTalk.SpecFlow;
@@ -44,16 +45,18 @@ namespace PageObjectPatternPoll.Steps
         [When(@"I add ""tak"" vote")]
         public void WhenIAddVote()
         {
+            var actions = new Actions(Driver);
             waitHelper.WaitForClickable(pollPage.ViewResults);
-            pollPage.ViewResults.Click();
+            actions.MoveToElement(pollPage.ViewResults).Click().Build().Perform();
             waitHelper.WaitForClickable(pollPage.VotesCounter);
             scenarioContext.Set<int>(pollPage.AmountOfVotes,"AMOUNT-OF-POLLS");
+            actions.MoveToElement(pollPage.ViewResults).Click().Build().Perform();
             waitHelper.WaitForClickable(pollPage.ReturnToPoll);
-            pollPage.ReturnToPoll.Click();
+            actions.MoveToElement(pollPage.ReturnToPoll).Build().Perform();
             waitHelper.WaitForClickable(pollPage.PollAnswears.First(x => x.Text=="Tak"));
-            pollPage.PollAnswears.First(x => x.Text == "Tak").Click();
+            actions.MoveToElement(pollPage.PollAnswears.First(x => x.Text == "Tak")).Click().Build().Perform();
             waitHelper.WaitForClickable(pollPage.VoteButton);
-            pollPage.VoteButton.Click();
+            actions.MoveToElement(pollPage.VoteButton).Click().Build().Perform();
         }
 
         [Then(@"Check amount of votes")]
