@@ -38,6 +38,7 @@ namespace PageObjectPatternPoll.Steps
         {
             waitHelper.WaitForClickable(pollPage.PollBox);  
             Assert.True(pollPage.PollBox.Displayed,"pollPage.PollBox.Displayed is false");
+            pollPage.CookiePolicy.Click();
         }
 
         [When(@"I add ""tak"" vote")]
