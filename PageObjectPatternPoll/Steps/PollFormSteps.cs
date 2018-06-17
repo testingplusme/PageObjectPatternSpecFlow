@@ -3,6 +3,7 @@ using BoDi;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using PageObjectPatternPoll.Helpers;
 using PageObjectPatternPoll.Pages;
 using TechTalk.SpecFlow;
@@ -46,7 +47,7 @@ namespace PageObjectPatternPoll.Steps
         public void WhenIAddVote()
         {
             seleniumHelper.MoveToElementAndClick(pollPage.ViewResults);
-            waitHelper.Wait().Until(x => pollPage.VotesCounter);
+            waitHelper.Wait().Until(ExpectedConditions.ElementToBeClickable(pollPage.VotesCounter));
             scenarioContext.Set<int>(pollPage.AmountOfVotes,"AMOUNT-OF-POLLS");
             seleniumHelper.MoveToElementAndClick(pollPage.ReturnToPoll);
             seleniumHelper.MoveToElementAndClick(pollPage.PollAnswears.First(x => x.Text == "Tak"));
