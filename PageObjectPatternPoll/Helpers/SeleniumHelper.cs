@@ -16,6 +16,7 @@ namespace PageObjectPatternPoll.Helpers
         public void GoToPage(string url)
         {
             driver.Navigate().GoToUrl(url);
+            driver.Manage().Window.Maximize();
         }
     }
 }
